@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sukkur Smart City CMS | Advanced Citizen Portal</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #003049;
+            --accent: #d62828;
+            --secondary: #f77f00;
+            --light: #eae2b7;
+            --text-dark: #333;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Navigation */
+        header {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 24px;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-menu a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 48, 73, 0.8), rgba(0, 48, 73, 0.8)), url('https://images.unsplash.com/photo-1570129477492-45c003edd2be?q=80&w=2000');
+            background-size: cover;
+            color: white;
+            padding: 100px 0;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .btn-accent {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+
+        .btn-outline {
+            border: 2px solid white;
+            color: white;
+            padding: 10px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        /* Track Status Section */
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .track-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .custom-input {
+            padding: 15px;
+            border: 2px solid #eee;
+            border-radius: 8px 0 0 8px !important;
+        }
+
+        /* Timeline */
+        .track-timeline {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-top: 40px;
+        }
+
+        .track-timeline::before {
+            content: '';
+            position: absolute;
+            top: 25px;
+            left: 5%;
+            right: 5%;
+            height: 3px;
+            background: #e9ecef;
+            z-index: 1;
+        }
+
+        .timeline-step {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            width: 25%;
+        }
+
+        .step-icon {
+            width: 55px;
+            height: 55px;
+            background: white;
+            border: 3px solid #e9ecef;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            color: #adb5bd;
+            transition: 0.4s;
+        }
+
+        .active .step-icon {
+            border-color: var(--secondary);
+            background: var(--secondary);
+            color: white;
+            box-shadow: 0 0 15px rgba(247, 127, 0, 0.3);
+        }
+
+        .completed .step-icon {
+            border-color: #28a745;
+            background: #28a745;
+            color: white;
+        }
+
+        /* Complaint Section */
+        .form-box {
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            line-height: 2;
+            transition: 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">SUKKUR<span>CMS</span></a>
+            <nav class="nav-menu d-none d-lg-block">
+                <a href="#home">Home</a>
+                <a href="#track">Track Status</a>
+                <a href="#complaint">File Complaint</a>
+                <a href="#">Departments</a>
+            </nav>
+            <div class="nav-btns">
+                <a href="#" class="btn btn-accent">Login</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero text-center">
+        <div class="container">
+            <h1 class="animate__animated animate__fadeInDown">Smarter Sukkur,<br>Better Life.</h1>
+            <p class="mt-3 mb-5 fs-5">Sukkur City ke maslo ka digital hal. Ab har shikayat par hoga foran action.</p>
+            <div class="d-flex justify-content-center gap-3">
+                <a href="#complaint" class="btn btn-accent"><i class="fas fa-plus-circle me-2"></i>New Complaint</a>
+                <a href="#track" class="btn btn-outline"><i class="fas fa-search me-2"></i>Track Status</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="track" class="section-padding bg-light">
+        <div class="container">
+            <div class="row justify-content-center text-center mb-5">
+                <div class="col-md-7">
+                    <h2 class="fw-bold">Apni Shikayat Track Karein</h2>
+                    <p class="text-muted">Apna Ticket ID darj karein aur maloom karein ke aapka masla kahan tak
+                        pohancha.</p>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="input-group mb-4 shadow-sm">
+                        <input type="text" id="trackInput" class="form-control custom-input"
+                            placeholder="Example: SKR-9988">
+                        <button class="btn btn-accent px-4" onclick="showTracking()">Track Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="trackingResult" class="d-none animate__animated animate__fadeInUp">
+                <div class="track-card mt-4">
+                    <div class="row align-items-center mb-4">
+                        <div class="col-md-6">
+                            <h5>Ticket ID: <span id="resID" class="text-primary">#SKR-9988</span></h5>
+                            <p class="mb-0 text-muted">Category: Water Supply | Date: 07-Jan-2026</p>
+                        </div>
+                        <div class="col-md-6 text-md-end">
+                            <span class="badge bg-warning p-2 px-3 fs-6">Processing</span>
+                        </div>
+                    </div>
+
+                    <div class="track-timeline">
+                        <div class="timeline-step completed">
+                            <div class="step-icon"><i class="fas fa-file-alt"></i></div>
+                            <h6 class="mt-2">Submitted</h6>
+                        </div>
+                        <div class="timeline-step active">
+                            <div class="step-icon"><i class="fas fa-user-check"></i></div>
+                            <h6 class="mt-2">Assigned</h6>
+                        </div>
+                        <div class="timeline-step">
+                            <div class="step-icon"><i class="fas fa-tools"></i></div>
+                            <h6 class="mt-2">On Ground</h6>
+                        </div>
+                        <div class="timeline-step">
+                            <div class="step-icon"><i class="fas fa-check-circle"></i></div>
+                            <h6 class="mt-2">Resolved</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="complaint" class="section-padding">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-5">
+                    <span class="text-accent fw-bold">Citizen Portal</span>
+                    <h2 class="display-6 fw-bold mt-2">Register Your Voice</h2>
+                    <p class="mt-4">Sain, masla koi bhi ho—Chahe pani ki killat ho ya street lights kharab hon—hum tak
+                        pohanchayein.</p>
+
+                    <div class="d-flex align-items-center mb-4 mt-5">
+                        <div class="btn btn-accent rounded-circle me-3">1</div>
+                        <div><strong>Fill Details:</strong> Apna naam aur contact sahi likhein.</div>
+                    </div>
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="btn btn-accent rounded-circle me-3">2</div>
+                        <div><strong>Evidence:</strong> Tasveer ya video attach karein.</div>
+                    </div>
+                </div>
+
+                <div class="col-lg-7">
+                    <div class="form-box">
+                        <form id="cmsForm" onsubmit="event.preventDefault(); alert('Shikayat Jama ho gayi!');">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Full Name</label>
+                                    <input type="text" class="form-control p-3" placeholder="Enter Name" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Phone Number</label>
+                                    <input type="tel" class="form-control p-3" placeholder="0300-XXXXXXX" required>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label">Category</label>
+                                    <select class="form-select p-3">
+                                        <option>Water & Sewerage</option>
+                                        <option>Street Lights</option>
+                                        <option>Waste Management</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label">Description</label>
+                                    <textarea class="form-control p-3" rows="4"
+                                        placeholder="Masla bayan karein..."></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-accent w-100 p-3 mt-3 shadow">Submit Complaint Now</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="row g-4 mb-5">
+                <div class="col-lg-4">
+                    <a href="#" class="logo text-white">SUKKUR<span>CMS</span></a>
+                    <p class="mt-3 text-secondary">Sukkur District Administration ka official digital portal. Hamara
+                        maqsad city ki tarraqi aur logon ki asani hai.</p>
+                </div>
+                <div class="col-lg-2 footer-links">
+                    <h5>Quick Access</h5>
+                    <ul>
+                        <li><a href="#">New Complaint</a></li>
+                        <li><a href="#">Track Status</a></li>
+                        <li><a href="#">Departments</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 footer-links">
+                    <h5>Contact Us</h5>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt me-2 text-accent"></i> DC Office, Sukkur</li>
+                        <li><i class="fas fa-phone me-2 text-accent"></i> +92-71-1234567</li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h5>Social Media</h5>
+                    <div class="d-flex gap-3 mt-3">
+                        <a href="#" class="btn btn-outline-light btn-sm"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="btn btn-outline-light btn-sm"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="btn btn-outline-light btn-sm"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <p class="text-center text-secondary mb-0 mt-4">&copy; 2026 Sukkur Digital Empowerment Cell | All Rights
+                Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function showTracking() {
+            let id = document.getElementById('trackInput').value;
+            if (id === "") {
+                alert("Sain, ID toh likhein!");
+                return;
+            }
+            document.getElementById('resID').innerText = "#" + id.toUpperCase();
+            document.getElementById('trackingResult').classList.remove('d-none');
+            window.location.hash = "#trackingResult";
+        }
+    </script>
+</body>
+
+</html>
